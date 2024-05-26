@@ -47,3 +47,8 @@ test/FsAutoComplete.Tests.Lsp/TestResults/
 BenchmarkDotNet.Artifacts/
 
 *.sarif
+
+# fsharp.formatting
+tmp
+.fsdocs
+output

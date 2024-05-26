@@ -1,17 +1,25 @@
 <Project>
 
-<Target Name="SupportPrereleaseVersion"
-    AfterTargets="SetVersionFromChangelog">
+  <Target Name="SupportPrereleaseVersion" AfterTargets="SetVersionFromChangelog">
     <PropertyGroup Condition="'$(VersionSuffix)' != ''">
-        <Version>$(Version)-$(VersionSuffix)</Version>
-        <PackageVersion>$(Version)</PackageVersion>
+      <Version>$(Version)-$(VersionSuffix)</Version>
+      <PackageVersion>$(Version)</PackageVersion>
     </PropertyGroup>
-</Target>
+  </Target>
 
-<PropertyGroup>
+  <PropertyGroup>
     <SarifOutput Condition="$(SarifOutput) == ''">./</SarifOutput>
     <CodeRoot Condition="$(CodeRoot) == ''">.</CodeRoot>
     <FSharpAnalyzersOtherFlags>--analyzers-path &quot;$(PkgIonide_Analyzers)/analyzers/dotnet/fs&quot; --code-root $(CodeRoot) --report &quot;$(SarifOutput)/$(MSBuildProjectName)-$(TargetFramework).sarif&quot; --verbosity d</FSharpAnalyzersOtherFlags>
-</PropertyGroup>
+  </PropertyGroup>
+
+  <Target Name="SetDependentFsDocsProperties" DependsOnTargets="InitializeSourceControlInformation" AfterTargets="PrepareForBuild">
+    <PropertyGroup Label="FsDocsProperties">
+      <!-- FSharp.Formatting has custom properties, but these should mostly be set from more
+      standard packaging properties IMO. -->
+      <RepositoryUrl Condition="'$(RepositoryUrl)' == '' and '$(PublishRepositoryUrl)' == 'true'">$(PrivateRepositoryUrl)</RepositoryUrl>
+      <FsDocsReleaseNotesLink>$(RepositoryUrl)/blob/main/CHANGELOG.md</FsDocsReleaseNotesLink>
+    </PropertyGroup>
+  </Target>
 
 </Project>

@@ -10,7 +10,6 @@
     <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>A community-developed Language Server Protocol implementation for F#</Description>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>logo.png</PackageIcon>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <Authors>FsAutoComplete contributors</Authors>
@@ -68,8 +67,7 @@
   https://github.com/nuget/home/issues/3891#issuecomment-377319939 -->
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
     <ItemGroup>
-      <BuildOutputInPackage
-        Include="@(ReferenceCopyLocalPaths -> WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths -> WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
     </ItemGroup>
   </Target>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
