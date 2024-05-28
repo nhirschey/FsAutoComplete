@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>FsAutoComplete</Title>
     <Product>FsAutoComplete</Product>
-    <PackageLicenseExpression Condition=" '$(PackAsTool)' != 'true' ">Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <NoWarn>$(NoWarn);3186,0042</NoWarn><!-- circumvent an error with the fake dependencymanager for
     paket: https://github.com/dotnet/fsharp/issues/8678 -->
     <NoWarn>$(NoWarn);NU1902</NoWarn><!-- NU1902 - package vulnerability detected -->
@@ -16,6 +16,8 @@
     <ChangelogFile>$(MSBuildThisFileDirectory)CHANGELOG.md</ChangelogFile>
     <!-- Only the tool package is packable -->
     <IsPackable>false</IsPackable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <FsDocsLicenseLink>https://www.apache.org/licenses/LICENSE-2.0</FsDocsLicenseLink>
   </PropertyGroup>
 
  <PropertyGroup>

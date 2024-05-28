@@ -48,5 +48,7 @@ BenchmarkDotNet.Artifacts/
 
 *.sarif
 
-tmp/*
-.fsdocs/*
+# fsharp.formatting
+tmp
+.fsdocs
+output
